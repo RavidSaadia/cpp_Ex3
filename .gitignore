@@ -23,6 +23,11 @@ solution*
 *.mod
 *.smod
 
+#tikiot
+/*debug
+.idea
+.gitignore
+
 # Compiled Static libraries
 *.lai
 *.la
