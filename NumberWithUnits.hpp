@@ -25,11 +25,38 @@ namespace ariel {
 
     public:
 
-        explicit NumberWithUnits(int = 0, std::string = "km");
 
-        static void read_units(std::ifstream ifstream);
+        NumberWithUnits(int amount, const std::string &subtype);
+        NumberWithUnits();
 
-         static int fine_type_by_subtype(const std::string& basicString);
+        static void read_units(std::ifstream& ifstream);
+
+        static int fine_type_by_subtype(const std::string &basicString);
+
+        bool  operator== (const NumberWithUnits &n) const;
+        bool  operator!= (const NumberWithUnits &n) const;
+        bool  operator<= (const NumberWithUnits &n) const;
+        bool  operator< (const NumberWithUnits &n) const;
+        bool  operator>= (const NumberWithUnits &n) const;
+        bool  operator> (const NumberWithUnits &n) const;
+
+
+        NumberWithUnits  operator+= ( NumberWithUnits n) ;
+        NumberWithUnits  operator+ ( NumberWithUnits &n) ;
+        NumberWithUnits  operator+ () ;
+        NumberWithUnits  operator-= ( NumberWithUnits n) ;
+        NumberWithUnits  operator- ( NumberWithUnits &n) ;
+        NumberWithUnits  operator- () ;
+
+        NumberWithUnits  operator-- ();
+        NumberWithUnits  operator-- (int);
+        NumberWithUnits  operator++ ();
+        NumberWithUnits  operator++ (int);
+        friend NumberWithUnits  operator* ( double d, NumberWithUnits n);
+
+        friend std::ostream& operator<<(std::ostream &os, NumberWithUnits n);
+        friend std::istream& operator>>( std::istream &is, NumberWithUnits n );
+
     };
 
 }
