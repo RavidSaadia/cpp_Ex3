@@ -6,7 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ravid/CLionProjects/cpp/Ex3/Demo.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/Demo.cpp.o"
   "/home/ravid/CLionProjects/cpp/Ex3/NumberWithUnits.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/NumberWithUnits.cpp.o"
-  "/home/ravid/CLionProjects/cpp/Ex3/main.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/main.cpp.o"
+  "/home/ravid/CLionProjects/cpp/Ex3/TestCounter.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/TestCounter.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

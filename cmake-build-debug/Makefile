@@ -197,32 +197,32 @@ NumberWithUnits.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/NumberWithUnits.cpp.s
 .PHONY : NumberWithUnits.cpp.s
 
-main.o: main.cpp.o
+TestCounter.o: TestCounter.cpp.o
 
-.PHONY : main.o
+.PHONY : TestCounter.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/main.cpp.o
-.PHONY : main.cpp.o
+TestCounter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/TestCounter.cpp.o
+.PHONY : TestCounter.cpp.o
 
-main.i: main.cpp.i
+TestCounter.i: TestCounter.cpp.i
 
-.PHONY : main.i
+.PHONY : TestCounter.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/main.cpp.i
-.PHONY : main.cpp.i
+TestCounter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/TestCounter.cpp.i
+.PHONY : TestCounter.cpp.i
 
-main.s: main.cpp.s
+TestCounter.s: TestCounter.cpp.s
 
-.PHONY : main.s
+.PHONY : TestCounter.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/main.cpp.s
-.PHONY : main.cpp.s
+TestCounter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/TestCounter.cpp.s
+.PHONY : TestCounter.cpp.s
 
 # Help Target
 help:
@@ -239,9 +239,9 @@ help:
 	@echo "... NumberWithUnits.o"
 	@echo "... NumberWithUnits.i"
 	@echo "... NumberWithUnits.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... TestCounter.o"
+	@echo "... TestCounter.i"
+	@echo "... TestCounter.s"
 .PHONY : help
 
 
