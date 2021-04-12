@@ -3,26 +3,30 @@
 //
 
 #include <iostream>
+#include <utility>
 #include "NumberWithUnits.hpp"
+#include "types_map.hpp"
 
 using namespace std;
 using namespace ariel;
 
 
-NumberWithUnits::NumberWithUnits() : _amount(0), _type(0) {}
+//NumberWithUnits::NumberWithUnits() : _amount(0), _type(0) {}
 
-NumberWithUnits::NumberWithUnits(int amount, const string &subtype) :
+NumberWithUnits::NumberWithUnits(int amount, string type) :
         _amount(amount),
-        _subtype(subtype),
-        _type(fine_type_by_subtype(subtype)) {}
+        _type(std::move(type)){}
 
-void ariel::NumberWithUnits::read_units(ifstream &ifstream) {
-    ifstream.close();
+void ariel::NumberWithUnits::read_units(ifstream &ifs) {
+string line;
+    getline(ifs,line);
+line.
 
 }
 
 // OPERATORS //
 bool NumberWithUnits::operator==(const NumberWithUnits &n) const {
+
     return false;
 }
 

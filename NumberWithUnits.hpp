@@ -15,25 +15,23 @@
 namespace ariel {
 
     class NumberWithUnits {
-        static std::map<std::string, std::map<std::string, double>> types;
 
     private:
 
-        int _type;
         int _amount;
-        std::string _subtype;
+        std::string _type;
 
 
     public:
 
 
-        NumberWithUnits(int amount, const std::string &subtype);
+        NumberWithUnits(int amount, std::string subtype);
 
         NumberWithUnits();
 
         static void read_units(std::ifstream &ifstream);
 
-        static int fine_type_by_subtype(const std::string &basicString);
+//        static int fine_type_by_subtype(const std::string &basicString);
 
         bool operator==(const NumberWithUnits &n) const;
 
