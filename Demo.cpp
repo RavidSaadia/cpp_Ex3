@@ -9,9 +9,9 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-using namespace std;
-
 #include "NumberWithUnits.hpp"
+
+using namespace std;
 using namespace ariel;
 
 int main() {

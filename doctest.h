@@ -548,7 +548,7 @@ namespace assertType {
         is_nothrow     = 2 * is_throws_with,
 
         is_false = 2 * is_nothrow,
-        is_unary = 2 * is_false, // not checked anywhere - used just to distinguish the types_map
+        is_unary = 2 * is_false, // not checked anywhere - used just to distinguish the Types_map
 
         is_eq = 2 * is_unary,
         is_ne = 2 * is_eq,
@@ -559,7 +559,7 @@ namespace assertType {
         is_ge = 2 * is_gt,
         is_le = 2 * is_ge,
 
-        // macro types_map
+        // macro Types_map
 
         DT_WARN    = is_normal | is_warn,
         DT_CHECK   = is_normal | is_check,
@@ -1799,7 +1799,7 @@ int registerReporter(const char* name, int priority, bool isReporter) {
     DOCTEST_IMPLEMENT_FIXTURE(DOCTEST_ANONYMOUS(_DOCTEST_ANON_CLASS_), c,                          \
                               DOCTEST_ANONYMOUS(_DOCTEST_ANON_FUNC_), decorators)
 
-// for converting types_map to strings without the <typeinfo> header and demangling
+// for converting Types_map to strings without the <typeinfo> header and demangling
 #define DOCTEST_TYPE_TO_STRING_IMPL(...)                                                           \
     template <>                                                                                    \
     inline const char* type_to_string<__VA_ARGS__>() {                                             \
@@ -2267,7 +2267,7 @@ int registerReporter(const char* name, int priority, bool isReporter) {
     DOCTEST_IMPLEMENT_FIXTURE(DOCTEST_ANONYMOUS(_DOCTEST_ANON_CLASS_), x,                          \
                               DOCTEST_ANONYMOUS(_DOCTEST_ANON_FUNC_), name)
 
-// for converting types_map to strings without the <typeinfo> header and demangling
+// for converting Types_map to strings without the <typeinfo> header and demangling
 #define DOCTEST_TYPE_TO_STRING(...) typedef int DOCTEST_ANONYMOUS(_DOCTEST_ANON_FOR_SEMICOLON_)
 #define DOCTEST_TYPE_TO_STRING_IMPL(...)
 
@@ -2576,7 +2576,7 @@ int registerReporter(const char* name, int priority, bool isReporter) {
 // this is here to clear the 'current test suite' for the current translation unit - at the top
 DOCTEST_TEST_SUITE_END();
 
-// add stringification for primitive/fundamental types_map
+// add stringification for primitive/fundamental Types_map
 namespace doctest { namespace detail {
     DOCTEST_TYPE_TO_STRING_IMPL(bool)
     DOCTEST_TYPE_TO_STRING_IMPL(float)
@@ -2732,7 +2732,7 @@ DOCTEST_MAKE_STD_HEADERS_CLEAN_FROM_WARNINGS_ON_WALL_BEGIN
 #include <cstdint>
 
 #ifdef DOCTEST_PLATFORM_MAC
-#include <sys/types_map.h>
+#include <sys/Types_map.h>
 #include <unistd.h>
 #include <sys/sysctl.h>
 #endif // DOCTEST_PLATFORM_MAC
@@ -4633,7 +4633,7 @@ namespace {
         XmlWriter  xml;
         std::mutex mutex;
 
-        // caching pointers/references to objects of these types_map - safe to do
+        // caching pointers/references to objects of these Types_map - safe to do
         const ContextOptions& opt;
         const TestCaseData*   tc = nullptr;
 
@@ -4883,7 +4883,7 @@ namespace {
         std::vector<SubcaseSignature> subcasesStack;
         std::mutex                    mutex;
 
-        // caching pointers/references to objects of these types_map - safe to do
+        // caching pointers/references to objects of these Types_map - safe to do
         const ContextOptions& opt;
         const TestCaseData*   tc;
 

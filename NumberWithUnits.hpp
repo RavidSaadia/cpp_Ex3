@@ -1,37 +1,37 @@
 //
 // Created by ravid on 07/04/2021.
 //
+//#ifndef UNTITLED1_NUMBERWITHUNITS_HPP
+//#define UNTITLED1_NUMBERWITHUNITS_HPP
+#pragma once
 
-#ifndef UNTITLED1_NUMBERWITHUNITS_HPP
-#define UNTITLED1_NUMBERWITHUNITS_HPP
-#define DIST 1
-#define WEIGHT 2
-#define TIME 3
-#define MONEY 4
+#include <sstream>
+#include <ostream>
+#include <iostream>
 
-#include "map"
+#include <map>
 #include <fstream>
+//#include "Types_map.hpp"
 
-namespace ariel {
-
+namespace ariel{
     class NumberWithUnits {
 
     private:
+        double _amount;
 
-        int _amount;
         std::string _type;
+//        static  Types_map _typesMap;
 
 
     public:
 
 
-        NumberWithUnits(int amount, std::string subtype);
+        NumberWithUnits(double amount, std::string subtype);
 
-        NumberWithUnits();
+//        NumberWithUnits();
 
         static void read_units(std::ifstream &ifstream);
 
-//        static int fine_type_by_subtype(const std::string &basicString);
 
         bool operator==(const NumberWithUnits &n) const;
 
@@ -46,31 +46,46 @@ namespace ariel {
         bool operator>(const NumberWithUnits &n) const;
 
 
-        NumberWithUnits operator+=(NumberWithUnits n);
+        NumberWithUnits &operator+=(const NumberWithUnits &n);
 
-        NumberWithUnits operator+(NumberWithUnits &n);
+        NumberWithUnits operator+(const NumberWithUnits &n) const;
 
         NumberWithUnits operator+();
 
-        NumberWithUnits operator-=(NumberWithUnits n);
+        NumberWithUnits &operator-=(const NumberWithUnits &n);
 
-        NumberWithUnits operator-(NumberWithUnits &n);
+        NumberWithUnits operator-(const NumberWithUnits &n) const;
 
         NumberWithUnits operator-();
 
-        NumberWithUnits operator--();
 
-        NumberWithUnits operator--(int);
+        NumberWithUnits &operator--();
 
-        NumberWithUnits operator++();
+        NumberWithUnits operator--(int);//post
 
-        NumberWithUnits operator++(int);
+        NumberWithUnits &operator++();
 
-        friend NumberWithUnits operator*(double d, NumberWithUnits n);
+        NumberWithUnits operator++(int);//post
 
-        friend std::ostream &operator<<(std::ostream &os, const NumberWithUnits &n);
+        friend const  NumberWithUnits operator*(const double &d, const NumberWithUnits &n){
+            return n;
+        }
 
-        friend std::istream &operator>>(std::istream &is, NumberWithUnits &n);
+        friend const  NumberWithUnits operator*(const NumberWithUnits &n, const double &d){
+            return n;
+        }
+//        friend const NumberWithUnits operator*( const ariel::NumberWithUnits &n,int d);
+//        friend const NumberWithUnits operator*(int d,const NumberWithUnits &n);
+
+        friend std::ostream& operator<<(std::ostream& os, const NumberWithUnits &n){
+            return os;
+        }
+//            friend std::ostream& operator<<(  NumberWithUnits &n, std::ostream &os);
+
+        friend std::istream& operator>>(std::istream &is, NumberWithUnits &n){
+            return is;
+        }
+//        friend std::istream& operator>>( NumberWithUnits &n, std::istream &is);
 
 //        friend std::ostream &operator<<(NumberWithUnits n, std::ostream &os);
 
@@ -78,4 +93,4 @@ namespace ariel {
     };
 
 }
-#endif //UNTITLED1_NUMBERWITHUNITS_HPP
+//#endif //UNTITLED1_NUMBERWITHUNITS_HPP
