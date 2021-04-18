@@ -7,8 +7,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include <stdexcept>
+//#include <sstream>
 #include "NumberWithUnits.hpp"
 
 using namespace std;
@@ -17,7 +16,6 @@ using namespace ariel;
 int main() {
   ifstream units_file{"units.txt"};
   NumberWithUnits::read_units(units_file);
-
   NumberWithUnits a{2, "km"};   // 2 kilometers
   cout << a << endl;           // Prints "2[km]".
   cout << (-a) << endl;    // Prints "-2[km]"
@@ -39,10 +37,11 @@ int main() {
   cout << a << endl;   // Prints "1700[kg]". Note that a has changed.
 
   try {
-    cout << (a+b) << endl;  
+    cout << (a+b) << endl;
   } catch (const std::exception& ex) {
     cout << ex.what() << endl; // Prints "Units do not match - [m] cannot be converted to [kg]"
   }
   cout << "End of demo!" << endl;
-  return 0;
+
+    return 0;
 }

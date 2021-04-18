@@ -20,6 +20,10 @@ namespace ariel{
         double _amount;
 
         std::string _type;
+    public:
+        double getAmount() const;
+
+        const std::string &getType() const;
 //        static  Types_map _typesMap;
 
 
@@ -30,7 +34,7 @@ namespace ariel{
 
 //        NumberWithUnits();
 
-        static void read_units(std::ifstream &ifstream);
+        static void read_units(std::ifstream &file);
 
 
         bool operator==(const NumberWithUnits &n) const;

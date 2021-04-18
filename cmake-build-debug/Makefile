@@ -197,6 +197,33 @@ NumberWithUnits.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/NumberWithUnits.cpp.s
 .PHONY : NumberWithUnits.cpp.s
 
+Test.o: Test.cpp.o
+
+.PHONY : Test.o
+
+# target to build an object file
+Test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/Test.cpp.o
+.PHONY : Test.cpp.o
+
+Test.i: Test.cpp.i
+
+.PHONY : Test.i
+
+# target to preprocess a source file
+Test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/Test.cpp.i
+.PHONY : Test.cpp.i
+
+Test.s: Test.cpp.s
+
+.PHONY : Test.s
+
+# target to generate assembly for a file
+Test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/Test.cpp.s
+.PHONY : Test.cpp.s
+
 TestCounter.o: TestCounter.cpp.o
 
 .PHONY : TestCounter.o
@@ -239,6 +266,9 @@ help:
 	@echo "... NumberWithUnits.o"
 	@echo "... NumberWithUnits.i"
 	@echo "... NumberWithUnits.s"
+	@echo "... Test.o"
+	@echo "... Test.i"
+	@echo "... Test.s"
 	@echo "... TestCounter.o"
 	@echo "... TestCounter.i"
 	@echo "... TestCounter.s"
