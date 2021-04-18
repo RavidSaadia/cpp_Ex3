@@ -65,28 +65,29 @@ namespace ariel{
 
         NumberWithUnits &operator--();
 
-        NumberWithUnits operator--(int);//post
+         NumberWithUnits operator--(int);//post
 
         NumberWithUnits &operator++();
 
-        NumberWithUnits operator++(int);//post
+         NumberWithUnits operator++(int);//post
 
-        friend const  NumberWithUnits operator*(const double &d, const NumberWithUnits &n){
-            return n;
+        friend   NumberWithUnits operator*(const double &d, const NumberWithUnits &n){
+            return (n*d);
         }
 
-        friend const  NumberWithUnits operator*(const NumberWithUnits &n, const double &d){
-            return n;
-        }
-//        friend const NumberWithUnits operator*( const ariel::NumberWithUnits &n,int d);
-//        friend const NumberWithUnits operator*(int d,const NumberWithUnits &n);
+        friend  NumberWithUnits operator*(const NumberWithUnits &n, const double &d){
+            return ariel::NumberWithUnits(n._amount * d,n._type);
+            }
 
         friend std::ostream& operator<<(std::ostream& os, const NumberWithUnits &n){
+            os<<n._amount<<"["<<n._type<<"]";
             return os;
         }
 //            friend std::ostream& operator<<(  NumberWithUnits &n, std::ostream &os);
 
         friend std::istream& operator>>(std::istream &is, NumberWithUnits &n){
+            char c = 0;
+            is >>n._amount >> c >>n._type >> c;
             return is;
         }
 //        friend std::istream& operator>>( NumberWithUnits &n, std::istream &is);

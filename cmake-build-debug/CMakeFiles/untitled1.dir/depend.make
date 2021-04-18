@@ -7,6 +7,10 @@ CMakeFiles/untitled1.dir/Demo.cpp.o: ../NumberWithUnits.hpp
 CMakeFiles/untitled1.dir/NumberWithUnits.cpp.o: ../NumberWithUnits.cpp
 CMakeFiles/untitled1.dir/NumberWithUnits.cpp.o: ../NumberWithUnits.hpp
 
+CMakeFiles/untitled1.dir/Test.cpp.o: ../NumberWithUnits.hpp
+CMakeFiles/untitled1.dir/Test.cpp.o: ../Test.cpp
+CMakeFiles/untitled1.dir/Test.cpp.o: ../doctest.h
+
 CMakeFiles/untitled1.dir/TestCounter.cpp.o: ../TestCounter.cpp
 CMakeFiles/untitled1.dir/TestCounter.cpp.o: ../doctest.h
 

@@ -163,8 +163,13 @@ ariel::NumberWithUnits ariel::NumberWithUnits::operator+(const ariel::NumberWith
 }
 
 ariel::NumberWithUnits ariel::NumberWithUnits::operator-(const ariel::NumberWithUnits &n) const {
+    string s1 = this->_type;
+    string s2 = n._type;
+    throw_type_exception(s1, s2);
+    double edge = t_map.get_edge(s1, s2);
 
-    return -(*this+n);
+
+    return NumberWithUnits(this->_amount - n._amount * edge, s1);
 }
 
 ariel::NumberWithUnits &ariel::NumberWithUnits::operator+=(const NumberWithUnits &n) {
@@ -188,23 +193,32 @@ ariel::NumberWithUnits ariel::NumberWithUnits::operator+() {
 }
 
 ariel::NumberWithUnits ariel::NumberWithUnits::operator-() {
-    this->_amount = -this->_amount;
+
+    return NumberWithUnits( -this->_amount,this->_type);
+}
+
+ariel::NumberWithUnits &ariel::NumberWithUnits::operator++() {
+    this->_amount++;
     return *this;
 }
 
 ariel::NumberWithUnits &ariel::NumberWithUnits::operator--() {
-    return *this;
-}
+    this->_amount--;
 
-ariel::NumberWithUnits &ariel::NumberWithUnits::operator++() {
     return *this;
 }
 
 ariel::NumberWithUnits ariel::NumberWithUnits::operator--(int) {
+
+//    NumberWithUnits temp {this->_amount--,this->_type};
+//    return temp;
+    this->_amount--;
     return *this;
 }
 
 ariel::NumberWithUnits ariel::NumberWithUnits::operator++(int) {
+    this->_amount++;
+
     return *this;
 }
 
