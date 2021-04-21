@@ -15,38 +15,38 @@ using namespace std;
 using namespace ariel;
 
 
-struct TypesMap {
-
-    std::map<std::string, std::map<std::string, double>> _type_map;
+struct Graph {
+private:
+    std::map<std::string, std::map<std::string, double>> _graph;
 
 
 public:
 
 
-    void add_type(std::string s1, std::string s2, double d) {
-        _type_map[s1][s1] = 1;
-        _type_map[s2][s2] = 1;
-        _type_map[s1][s2] = 1 / d;
-        _type_map[s2][s1] = d;
+    void add_type(const std::string &s1, const std::string &s2, double d) {
+        _graph[s1][s1] = 1;
+        _graph[s2][s2] = 1;
+        _graph[s1][s2] = 1 / d;
+        _graph[s2][s1] = d;
     };
 
-    bool is_in_map(std::string s) {
-        return _type_map.contains(s);
+    [[nodiscard]] bool is_in_graph(const std::string &s) const {
+        return _graph.contains(s);
     }
 
-    bool are_same_dim(std::string s1, std::string s2) {
+    bool are_connected(const std::string &s1, const std::string &s2) {
 
-        if (is_in_map(s1)) {
-            return _type_map[s1].contains(s2);
+        if (this->is_in_graph(s1) && this->is_in_graph(s2)) {
+            return (_graph[s1]).contains(s2);
         }
         std::cout << "the type " << s1 << " is unknown!" << std::endl;
         return false;
 
     }
 
-    double get_edge(string s1, string s2) {
-        if (_type_map.contains(s1) && _type_map.contains(s2)) {
-            return _type_map[s1][s2];
+    double get_edge(const string &s1, const string &s2) {
+        if (_graph.contains(s1) && _graph.contains(s2)) {
+            return _graph[s1][s2];
         }
         return -1;
     }
@@ -54,15 +54,15 @@ public:
 
 };
 
-static TypesMap t_map;
+static Graph t_map;
 
 
-ariel::NumberWithUnits::NumberWithUnits(double amount, string type) :
+NumberWithUnits::NumberWithUnits(double amount, string type) :
         _amount(amount),
         _type(std::move(type)) {}
 
-void throw_type_exception(string s1, string s2) {
-    if (!t_map.are_same_dim(s1, s2) || !t_map.is_in_map(s1) || !t_map.is_in_map(s2)) {
+void throw_type_exception(const string &s1, const string &s2) {
+    if (!t_map.are_connected(s1, s2) || !t_map.is_in_graph(s1) || !t_map.is_in_graph(s2)) {
         throw invalid_argument("Units do not match - [" + s2 + "] cannot be converted to [" + s1 + "]");
     }
 }
@@ -76,7 +76,7 @@ void NumberWithUnits::read_units(ifstream &file) {
 
             string key = line.substr(0, line.find_first_of(' ', 0));
             if (key != "=" && key != "1") {
-                parts[i++] = key;
+                parts.at(i++) = key;
             }
             if (line.length() > key.length()) {
                 line = line.substr(line.find_first_not_of(' ', key.length()));
@@ -89,7 +89,7 @@ void NumberWithUnits::read_units(ifstream &file) {
 }
 
 // BOOL OPERATORS //
-bool ariel::NumberWithUnits::operator==(const NumberWithUnits &n) const {
+bool NumberWithUnits::operator==(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     if (s1 == s2 && this->_amount == n._amount) { return true; }
@@ -97,59 +97,49 @@ bool ariel::NumberWithUnits::operator==(const NumberWithUnits &n) const {
 
     double edge = t_map.get_edge(s1, s2);
 
-    if (abs(this->_amount - (n._amount * edge)) <= EPS ) {
-        return true;
-    }
-
-    return false;
+    return (abs(this->_amount - (n._amount * edge)) <= EPS);
 }
 
-bool ariel::NumberWithUnits::operator!=(const NumberWithUnits &n) const {
+bool NumberWithUnits::operator!=(const NumberWithUnits &n) const {
 
     return this != &n;
 }
 
-bool ariel::NumberWithUnits::operator<=(const NumberWithUnits &n) const {
+bool NumberWithUnits::operator<=(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     throw_type_exception(s1, s2);
     double edge = t_map.get_edge(s1, s2);
 
-    if (this->_amount <= n._amount * edge) {
-        return true;
-    }
-
-    return false;
+    return (this->_amount <= n._amount * edge);
 }
 
-bool ariel::NumberWithUnits::operator>=(const NumberWithUnits &n) const {
+bool NumberWithUnits::operator>=(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
 
     throw_type_exception(s1, s2);
     double edge = t_map.get_edge(s1, s2);
 
-    if (this->_amount >= n._amount * edge) {
-        return true;
-    }
+    return (this->_amount >= n._amount * edge);
 
-    return false;
+
 }
 
-bool ariel::NumberWithUnits::operator<(const NumberWithUnits &n) const {
-    NumberWithUnits temp { this->getAmount(),this->getType()};
+bool NumberWithUnits::operator<(const NumberWithUnits &n) const {
+    NumberWithUnits temp{this->getAmount(), this->getType()};
     return !(temp >= n);
 }
 
-bool ariel::NumberWithUnits::operator>(const NumberWithUnits &n) const {
-    NumberWithUnits temp { this->getAmount(),this->getType()};
+bool NumberWithUnits::operator>(const NumberWithUnits &n) const {
+    NumberWithUnits temp{this->getAmount(), this->getType()};
     return !(temp <= n);
 
 }
 
 // PLUS OPERATORS //
 
-ariel::NumberWithUnits ariel::NumberWithUnits::operator+(const ariel::NumberWithUnits &n) const {
+NumberWithUnits NumberWithUnits::operator+(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     throw_type_exception(s1, s2);
@@ -159,11 +149,11 @@ ariel::NumberWithUnits ariel::NumberWithUnits::operator+(const ariel::NumberWith
     return NumberWithUnits(this->_amount + n._amount * edge, s1);
 }
 
-ariel::NumberWithUnits ariel::NumberWithUnits::operator+() {
+NumberWithUnits NumberWithUnits::operator+() {
     return *this;
 }
 
-ariel::NumberWithUnits &ariel::NumberWithUnits::operator+=(const NumberWithUnits &n) {
+NumberWithUnits &NumberWithUnits::operator+=(const NumberWithUnits &n) {
     string s1 = this->_type;
     string s2 = n._type;
 
@@ -174,25 +164,25 @@ ariel::NumberWithUnits &ariel::NumberWithUnits::operator+=(const NumberWithUnits
     return *this;
 }
 
-ariel::NumberWithUnits &ariel::NumberWithUnits::operator++() {// pre
+NumberWithUnits &NumberWithUnits::operator++() {// pre
     this->_amount++;
     return *this;
 }
 
-ariel::NumberWithUnits ariel::NumberWithUnits::operator++(int) {// post
-    NumberWithUnits temp {this->_amount,this->_type};
+NumberWithUnits NumberWithUnits::operator++(int) {// post
+    NumberWithUnits temp{this->_amount, this->_type};
     this->_amount++;
     return temp;
 }
 
 // MINUS OPERATORS //
 
-ariel::NumberWithUnits &ariel::NumberWithUnits::operator-=(const ariel::NumberWithUnits &n) {
-    NumberWithUnits temp {n._amount,n._type};
+NumberWithUnits &NumberWithUnits::operator-=(const NumberWithUnits &n) {
+    NumberWithUnits temp{n._amount, n._type};
     return *this += (-temp);
 }
 
-ariel::NumberWithUnits ariel::NumberWithUnits::operator-(const ariel::NumberWithUnits &n) const {
+NumberWithUnits NumberWithUnits::operator-(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     throw_type_exception(s1, s2);
@@ -202,20 +192,20 @@ ariel::NumberWithUnits ariel::NumberWithUnits::operator-(const ariel::NumberWith
     return NumberWithUnits(this->_amount - n._amount * edge, s1);
 }
 
-ariel::NumberWithUnits ariel::NumberWithUnits::operator-() {
+NumberWithUnits NumberWithUnits::operator-() {
 
-    return NumberWithUnits( -this->_amount,this->_type);
+    return NumberWithUnits(-this->_amount, this->_type);
 }
 
-ariel::NumberWithUnits &ariel::NumberWithUnits::operator--() {// pre
+NumberWithUnits &NumberWithUnits::operator--() {// pre
     this->_amount--;
 
     return *this;
 }
 
-ariel::NumberWithUnits ariel::NumberWithUnits::operator--(int) { // post
+NumberWithUnits NumberWithUnits::operator--(int) { // post
 
-    NumberWithUnits temp {this->_amount,this->_type};
+    NumberWithUnits temp{this->_amount, this->_type};
     this->_amount--;
     return temp;
 }
