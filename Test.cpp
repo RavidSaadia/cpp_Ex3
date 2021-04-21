@@ -47,10 +47,17 @@ TEST_CASE ("operators with known types") {
             CHECK_EQ((NumberWithUnits(400,"min") -= m1).getAmount(), 280);
             CHECK_EQ((NumberWithUnits(400,"min") -= m1).getAmount(), 280);
             CHECK_EQ((NumberWithUnits(400,"min") -= m1).getAmount(), 280);
-            CHECK_EQ((NumberWithUnits(400,"min")++).getAmount(), 401);
+            CHECK_EQ((NumberWithUnits(400,"min")++).getAmount(), 400);
+            CHECK_EQ((NumberWithUnits(400,"min")--).getAmount(), 400);
             CHECK_EQ((++NumberWithUnits(400,"min")).getAmount(), 401);
-            cout<<++NumberWithUnits(400,"min");
-            cout<<NumberWithUnits(400,"min")++;
+            CHECK_EQ((--NumberWithUnits(400,"min")).getAmount(), 399);
+
+            cout<<m1++<<endl;
+            cout<<m1<<endl;
+            cout<<++m1<<endl;
+
+//            cout<<++NumberWithUnits(400,"min")<<endl;
+//            cout<<NumberWithUnits(400,"min")++<<endl;
 
 
 }
