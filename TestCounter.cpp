@@ -22,9 +22,9 @@ struct ReporterCounter: public ConsoleReporter {
 
 REGISTER_REPORTER("counter", 1, ReporterCounter);
 
-int main(int argc, char** argv) {
-    Context context;
-    context.addFilter("reporters", "counter");
-    context.run();
-    return return_code;
-}
+//int main(int argc, char** argv) {
+//    Context context;
+//    context.addFilter("reporters", "counter");
+//    context.run();
+//    return return_code;
+//}

@@ -170,6 +170,33 @@ Demo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/Demo.cpp.s
 .PHONY : Demo.cpp.s
 
+My_Deme.o: My_Deme.cpp.o
+
+.PHONY : My_Deme.o
+
+# target to build an object file
+My_Deme.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/My_Deme.cpp.o
+.PHONY : My_Deme.cpp.o
+
+My_Deme.i: My_Deme.cpp.i
+
+.PHONY : My_Deme.i
+
+# target to preprocess a source file
+My_Deme.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/My_Deme.cpp.i
+.PHONY : My_Deme.cpp.i
+
+My_Deme.s: My_Deme.cpp.s
+
+.PHONY : My_Deme.s
+
+# target to generate assembly for a file
+My_Deme.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled1.dir/build.make CMakeFiles/untitled1.dir/My_Deme.cpp.s
+.PHONY : My_Deme.cpp.s
+
 NumberWithUnits.o: NumberWithUnits.cpp.o
 
 .PHONY : NumberWithUnits.o
@@ -263,6 +290,9 @@ help:
 	@echo "... Demo.o"
 	@echo "... Demo.i"
 	@echo "... Demo.s"
+	@echo "... My_Deme.o"
+	@echo "... My_Deme.i"
+	@echo "... My_Deme.s"
 	@echo "... NumberWithUnits.o"
 	@echo "... NumberWithUnits.i"
 	@echo "... NumberWithUnits.s"

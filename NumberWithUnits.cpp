@@ -54,7 +54,7 @@ public:
 
 };
 
-static Graph t_map;
+static Graph _g;
 
 
 NumberWithUnits::NumberWithUnits(double amount, string type) :
@@ -62,7 +62,7 @@ NumberWithUnits::NumberWithUnits(double amount, string type) :
         _type(std::move(type)) {}
 
 void throw_type_exception(const string &s1, const string &s2) {
-    if (!t_map.are_connected(s1, s2) || !t_map.is_in_graph(s1) || !t_map.is_in_graph(s2)) {
+    if (!_g.are_connected(s1, s2) || !_g.is_in_graph(s1) || !_g.is_in_graph(s2)) {
         throw invalid_argument("Units do not match - [" + s2 + "] cannot be converted to [" + s1 + "]");
     }
 }
@@ -83,7 +83,7 @@ void NumberWithUnits::read_units(ifstream &file) {
             }
         }
 
-        t_map.add_type(parts[0], parts[2], (double) stod(parts[1]));// consider use stold
+        _g.add_type(parts[0], parts[2], (double) stod(parts[1]));// consider use stold
     }
     file.close();
 }
@@ -95,23 +95,28 @@ bool NumberWithUnits::operator==(const NumberWithUnits &n) const {
     if (s1 == s2 && this->_amount == n._amount) { return true; }
     throw_type_exception(s1, s2);
 
-    double edge = t_map.get_edge(s1, s2);
+    double edge = _g.get_edge(s1, s2);
 
     return (abs(this->_amount - (n._amount * edge)) <= EPS);
 }
 
 bool NumberWithUnits::operator!=(const NumberWithUnits &n) const {
 
-    return this != &n;
+    return !(*this == n);
+}
+
+bool NumberWithUnits::operator<(const NumberWithUnits &n) const {
+    return !(*this >= n);
 }
 
 bool NumberWithUnits::operator<=(const NumberWithUnits &n) const {
-    string s1 = this->_type;
-    string s2 = n._type;
-    throw_type_exception(s1, s2);
-    double edge = t_map.get_edge(s1, s2);
 
-    return (this->_amount <= n._amount * edge);
+    return (*this == n || !(*this>=n));
+}
+
+bool NumberWithUnits::operator>(const NumberWithUnits &n) const {
+    return !(*this <= n);
+
 }
 
 bool NumberWithUnits::operator>=(const NumberWithUnits &n) const {
@@ -119,21 +124,10 @@ bool NumberWithUnits::operator>=(const NumberWithUnits &n) const {
     string s2 = n._type;
 
     throw_type_exception(s1, s2);
-    double edge = t_map.get_edge(s1, s2);
+    double edge = _g.get_edge(s1, s2);
 
     return (this->_amount >= n._amount * edge);
 
-
-}
-
-bool NumberWithUnits::operator<(const NumberWithUnits &n) const {
-    NumberWithUnits temp{this->getAmount(), this->getType()};
-    return !(temp >= n);
-}
-
-bool NumberWithUnits::operator>(const NumberWithUnits &n) const {
-    NumberWithUnits temp{this->getAmount(), this->getType()};
-    return !(temp <= n);
 
 }
 
@@ -143,7 +137,7 @@ NumberWithUnits NumberWithUnits::operator+(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     throw_type_exception(s1, s2);
-    double edge = t_map.get_edge(s1, s2);
+    double edge = _g.get_edge(s1, s2);
 
 
     return NumberWithUnits(this->_amount + n._amount * edge, s1);
@@ -158,7 +152,7 @@ NumberWithUnits &NumberWithUnits::operator+=(const NumberWithUnits &n) {
     string s2 = n._type;
 
     throw_type_exception(s1, s2);
-    double edge = t_map.get_edge(s1, s2);
+    double edge = _g.get_edge(s1, s2);
     this->_amount += n._amount * edge;
 
     return *this;
@@ -186,7 +180,7 @@ NumberWithUnits NumberWithUnits::operator-(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     throw_type_exception(s1, s2);
-    double edge = t_map.get_edge(s1, s2);
+    double edge = _g.get_edge(s1, s2);
 
 
     return NumberWithUnits(this->_amount - n._amount * edge, s1);
@@ -209,6 +203,23 @@ NumberWithUnits NumberWithUnits::operator--(int) { // post
     this->_amount--;
     return temp;
 }
+void ariel::add_types_for_demo(string s) {
+    array<string, 3> parts;
+    for (size_t i = 0; i < 3;) {
+
+        string key = s.substr(0, s.find_first_of(' ', 0));
+        if (key != "=" && key != "1") {
+            parts.at(i++) = key;
+        }
+        if (s.length() > key.length()) {
+            s = s.substr(s.find_first_not_of(' ', key.length()));
+        }
+    }
+    _g.add_type(parts[0], parts[2], (double) stod(parts[1]));// consider use stold
+
+}
+
+
 
 //double NumberWithUnits::getAmount() const {
 //    return _amount;

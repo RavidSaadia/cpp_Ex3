@@ -85,6 +85,9 @@
 		<Unit filename="/home/ravid/CLionProjects/cpp/Ex3/Demo.cpp">
 			<Option target="untitled1"/>
 		</Unit>
+		<Unit filename="/home/ravid/CLionProjects/cpp/Ex3/My_Deme.cpp">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="/home/ravid/CLionProjects/cpp/Ex3/NumberWithUnits.cpp">
 			<Option target="untitled1"/>
 		</Unit>
@@ -95,9 +98,6 @@
 			<Option target="untitled1"/>
 		</Unit>
 		<Unit filename="/home/ravid/CLionProjects/cpp/Ex3/TestCounter.cpp">
-			<Option target="untitled1"/>
-		</Unit>
-		<Unit filename="/home/ravid/CLionProjects/cpp/Ex3/Types_map.hpp">
 			<Option target="untitled1"/>
 		</Unit>
 		<Unit filename="/home/ravid/CLionProjects/cpp/Ex3/CMakeLists.txt">

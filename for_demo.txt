@@ -1,0 +1,15 @@
+1 km = 1000 m
+1 m = 100 cm
+1 kg = 1000 g
+1 ton = 1000 kg
+1 hour = 60 min
+1 min = 60 sec
+1 sec = 1000 milly_sec
+1 USD = 3.33 ILS
+1 BITCOIN = 55000 USD
+1 ILS = 100 AGORA
+1 tera = 1000 gb
+1 gb = 1000 mb
+1 mb = 1000 kb
+1 kb = 1000 byte
+1 byte = 8 bit

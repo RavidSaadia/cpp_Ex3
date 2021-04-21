@@ -22,10 +22,23 @@ TEST_CASE ("operators with known types") {
     NumberWithUnits m2{120, "min"};
     NumberWithUnits m3{180, "min"};
             CHECK((m3 > m2));
+            CHECK((m3 >= m2));
+            CHECK((m2 < m3));
+            CHECK((m2 <= m3));
+            CHECK((m3 <= m3));
+            CHECK((m3 >= m3));
+
     CHECK((n1 == n2));
     CHECK((n1 == n1));
+    CHECK((m1 != m3));
     CHECK_THROWS(bool stam = (m1 == n1));
-    CHECK_THROWS(bool stam = (m2 == n1));
+     CHECK_THROWS(bool stam = (m2 != n1));
+     CHECK_THROWS(bool stam = (m2 <= n1));
+     CHECK_THROWS(bool stam = (m2 >= n1));
+     CHECK_THROWS(bool stam = (m2 < n1));
+     CHECK_THROWS(bool stam = (m2 > n1));
+     CHECK_THROWS((m2 - n1));
+     CHECK_THROWS((m2 + n1));
     CHECK((m2 == m1));
             CHECK(!(m3 < m1));
             CHECK((n2 <= n1));
@@ -52,9 +65,9 @@ TEST_CASE ("operators with known types") {
             CHECK_EQ((++NumberWithUnits(400,"min")).getAmount(), 401);
             CHECK_EQ((--NumberWithUnits(400,"min")).getAmount(), 399);
 
-            cout<<m1++<<endl;
-            cout<<m1<<endl;
-            cout<<++m1<<endl;
+//            cout<<m1++<<endl;
+//            cout<<m1<<endl;
+//            cout<<++m1<<endl;
 
 //            cout<<++NumberWithUnits(400,"min")<<endl;
 //            cout<<NumberWithUnits(400,"min")++<<endl;

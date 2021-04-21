@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ravid/CLionProjects/cpp/Ex3/Demo.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/Demo.cpp.o"
+  "/home/ravid/CLionProjects/cpp/Ex3/My_Deme.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/My_Deme.cpp.o"
   "/home/ravid/CLionProjects/cpp/Ex3/NumberWithUnits.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/NumberWithUnits.cpp.o"
   "/home/ravid/CLionProjects/cpp/Ex3/Test.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/Test.cpp.o"
   "/home/ravid/CLionProjects/cpp/Ex3/TestCounter.cpp" "/home/ravid/CLionProjects/cpp/Ex3/cmake-build-debug/CMakeFiles/untitled1.dir/TestCounter.cpp.o"

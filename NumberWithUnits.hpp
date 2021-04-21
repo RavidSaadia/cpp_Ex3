@@ -19,16 +19,13 @@ namespace ariel {
 
         std::string _type;
     public:
-        [[nodiscard]] double getAmount() const{
+        [[nodiscard]] double getAmount() const {
             return _amount;
         }
 
-        [[nodiscard]] const std::string &getType() const{
+        [[nodiscard]] const std::string &getType() const {
             return _type;
         }
-
-
-
 
 
         NumberWithUnits(double amount, std::string subtype);
@@ -92,5 +89,7 @@ namespace ariel {
 
 
     };
+
+    void add_types_for_demo(std::string s);
 
 }
