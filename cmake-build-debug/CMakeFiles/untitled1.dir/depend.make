@@ -9,6 +9,18 @@ CMakeFiles/untitled1.dir/My_Deme.cpp.o: ../My_Deme.cpp
 CMakeFiles/untitled1.dir/NumberWithUnits.cpp.o: ../NumberWithUnits.cpp
 CMakeFiles/untitled1.dir/NumberWithUnits.cpp.o: ../NumberWithUnits.hpp
 
+CMakeFiles/untitled1.dir/StudentTest1.cpp.o: ../NumberWithUnits.hpp
+CMakeFiles/untitled1.dir/StudentTest1.cpp.o: ../StudentTest1.cpp
+CMakeFiles/untitled1.dir/StudentTest1.cpp.o: ../doctest.h
+
+CMakeFiles/untitled1.dir/StudentTest2.cpp.o: ../NumberWithUnits.hpp
+CMakeFiles/untitled1.dir/StudentTest2.cpp.o: ../StudentTest2.cpp
+CMakeFiles/untitled1.dir/StudentTest2.cpp.o: ../doctest.h
+
+CMakeFiles/untitled1.dir/StudentTest3.cpp.o: ../NumberWithUnits.hpp
+CMakeFiles/untitled1.dir/StudentTest3.cpp.o: ../StudentTest3.cpp
+CMakeFiles/untitled1.dir/StudentTest3.cpp.o: ../doctest.h
+
 CMakeFiles/untitled1.dir/Test.cpp.o: ../NumberWithUnits.hpp
 CMakeFiles/untitled1.dir/Test.cpp.o: ../Test.cpp
 CMakeFiles/untitled1.dir/Test.cpp.o: ../doctest.h

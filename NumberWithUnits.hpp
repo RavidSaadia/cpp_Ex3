@@ -83,10 +83,14 @@ namespace ariel {
 
         friend std::istream &operator>>(std::istream &is, NumberWithUnits &n) {
             char c = 0;
-            is >> n._amount >> c >> n._type >> c;
+            is>>n._amount>>c>>n._type;
+            n._type = n._type.substr(0,n._type.length()-1);
+//            is >> n._amount >> c >> n._type >> c;
+
             return is;
         }
 
+//        static void throw_type_exception(const std::string &s1, const std::string &s2);
 
     };
 
