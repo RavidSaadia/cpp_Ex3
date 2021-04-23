@@ -250,7 +250,6 @@ StudentTest1.o: StudentTest1.cpp.o
 # target to build an object file
 StudentTest1.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest1.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest1.cpp.o
 .PHONY : StudentTest1.cpp.o
 
 StudentTest1.i: StudentTest1.cpp.i
@@ -260,7 +259,6 @@ StudentTest1.i: StudentTest1.cpp.i
 # target to preprocess a source file
 StudentTest1.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest1.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest1.cpp.i
 .PHONY : StudentTest1.cpp.i
 
 StudentTest1.s: StudentTest1.cpp.s
@@ -270,7 +268,6 @@ StudentTest1.s: StudentTest1.cpp.s
 # target to generate assembly for a file
 StudentTest1.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest1.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest1.cpp.s
 .PHONY : StudentTest1.cpp.s
 
 StudentTest2.o: StudentTest2.cpp.o
@@ -280,7 +277,6 @@ StudentTest2.o: StudentTest2.cpp.o
 # target to build an object file
 StudentTest2.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest2.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest2.cpp.o
 .PHONY : StudentTest2.cpp.o
 
 StudentTest2.i: StudentTest2.cpp.i
@@ -290,7 +286,6 @@ StudentTest2.i: StudentTest2.cpp.i
 # target to preprocess a source file
 StudentTest2.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest2.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest2.cpp.i
 .PHONY : StudentTest2.cpp.i
 
 StudentTest2.s: StudentTest2.cpp.s
@@ -300,7 +295,6 @@ StudentTest2.s: StudentTest2.cpp.s
 # target to generate assembly for a file
 StudentTest2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest2.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest2.cpp.s
 .PHONY : StudentTest2.cpp.s
 
 StudentTest3.o: StudentTest3.cpp.o
@@ -310,7 +304,6 @@ StudentTest3.o: StudentTest3.cpp.o
 # target to build an object file
 StudentTest3.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest3.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest3.cpp.o
 .PHONY : StudentTest3.cpp.o
 
 StudentTest3.i: StudentTest3.cpp.i
@@ -320,7 +313,6 @@ StudentTest3.i: StudentTest3.cpp.i
 # target to preprocess a source file
 StudentTest3.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest3.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest3.cpp.i
 .PHONY : StudentTest3.cpp.i
 
 StudentTest3.s: StudentTest3.cpp.s
@@ -330,7 +322,6 @@ StudentTest3.s: StudentTest3.cpp.s
 # target to generate assembly for a file
 StudentTest3.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/StudentTest3.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/StudentTest3.cpp.s
 .PHONY : StudentTest3.cpp.s
 
 Test.o: Test.cpp.o

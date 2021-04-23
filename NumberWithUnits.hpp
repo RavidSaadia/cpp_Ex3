@@ -10,6 +10,7 @@
 #include <string>
 #include <algorithm>
 
+
 #define EPS 0.001
 
 namespace ariel {
@@ -83,22 +84,34 @@ namespace ariel {
         }
 
         friend std::istream &operator>>(std::istream &is, NumberWithUnits &n) {
-//            char c = 0;
-            std::string s;
-            getline(is, s);
-            s.erase(remove(s.begin(), s.end(), ' '), s.end());
-
-            double amount = std::stod(s.substr(0, s.find_first_of('[')));
-            unsigned long type_length = s.find_first_of(']')-1 - s.find_first_of('[');
-            std::string type = s.substr(s.find_first_of('[') + 1, type_length);
-
-            NumberWithUnits temp = NumberWithUnits(amount, type);
-            n = temp;
-            unsigned long s_left_length = s.length()-s.find_first_of(']')+1;
-            s = s.substr(s.find_first_of(']')+1,s_left_length);
-            for (char i : s) {
-                is.fill((char)i);
+            char c = 0;
+            std::string type1;
+            double amount;
+            is >> std::skipws >> amount >> std::skipws >> c >> std::skipws;
+//            if (c != '['){
+//                is.setstate(std::ios::failbit);
+//            }
+            is >> std::skipws >> type1 >> std::skipws;
+            if (type1.at(type1.length() - 1) != ']') {
+                is >> std::skipws >> c;
             }
+            if (type1.at(type1.length() - 1) == ']') {
+                type1 = type1.substr(0, type1.length() - 1);
+            }
+            NumberWithUnits temp = NumberWithUnits(amount, type1);
+            n = temp;
+
+//            double amount = std::stod(type1.substr(0, type1.find_first_of('[')));
+//            unsigned long type_length = type1.find_first_of(']') - 1 - type1.find_first_of('[');
+//            std::string type = type1.substr(type1.find_first_of('[') + 1, type_length);
+//
+//            NumberWithUnits temp = NumberWithUnits(amount, type);
+//            n = temp;
+//            unsigned long s_left_length = type1.length() - type1.find_first_of(']') + 1;
+//            type1 = type1.substr(type1.find_first_of(']') + 1, s_left_length);
+//            for (char i : type1) {
+//                is.fill((char)i);
+//            }
             return is;
         }
 

@@ -16,6 +16,16 @@ TEST_CASE ("operators with known types") {
     ifstream units_file{"units.txt"};
     NumberWithUnits::read_units(units_file);
 
+
+    NumberWithUnits a(7, "ILS");
+    NumberWithUnits b(7, "ILS");
+    NumberWithUnits c(7, "ILS");
+    istringstream iss3{" -16 [km]   -7 [hour ]  8.8 [min ]"};
+    iss3 >> a >> b >> c;
+            CHECK_EQ(a, NumberWithUnits(-16, "km"));
+            CHECK_EQ(b, NumberWithUnits(-7, "hour"));
+            CHECK_EQ(c, NumberWithUnits(8.8, "min"));
+
     NumberWithUnits n1{2, "km"};   // 2 kilometers
     NumberWithUnits n2{2000, "m"};
     NumberWithUnits m1{2, "hour"};
