@@ -11,7 +11,7 @@ add_executable(DEMO Demo.cpp
 add_executable(TEST TestRunner.cpp
         NumberWithUnits.cpp
         NumberWithUnits.hpp
-        Test.cpp My_Deme.cpp
+#        My_Deme.cpp
         StudentTest1.cpp
         StudentTest2.cpp
         StudentTest3.cpp)

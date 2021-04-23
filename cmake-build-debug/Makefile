@@ -189,7 +189,6 @@ My_Deme.o: My_Deme.cpp.o
 
 # target to build an object file
 My_Deme.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/My_Deme.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/My_Deme.cpp.o
 .PHONY : My_Deme.cpp.o
 
@@ -199,7 +198,6 @@ My_Deme.i: My_Deme.cpp.i
 
 # target to preprocess a source file
 My_Deme.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/My_Deme.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/My_Deme.cpp.i
 .PHONY : My_Deme.cpp.i
 
@@ -209,7 +207,6 @@ My_Deme.s: My_Deme.cpp.s
 
 # target to generate assembly for a file
 My_Deme.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/My_Deme.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/My_Deme.cpp.s
 .PHONY : My_Deme.cpp.s
 
@@ -330,7 +327,6 @@ Test.o: Test.cpp.o
 
 # target to build an object file
 Test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/Test.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/Test.cpp.o
 .PHONY : Test.cpp.o
 
@@ -340,7 +336,6 @@ Test.i: Test.cpp.i
 
 # target to preprocess a source file
 Test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/Test.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/Test.cpp.i
 .PHONY : Test.cpp.i
 
@@ -350,7 +345,6 @@ Test.s: Test.cpp.s
 
 # target to generate assembly for a file
 Test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/Test.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/Test.cpp.s
 .PHONY : Test.cpp.s
 

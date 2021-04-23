@@ -31,14 +31,14 @@ public:
 
         auto it = _graph[s1].begin();
         for (; it != _graph[s1].end(); ++it) {
-            _graph[s2][it->first] =d * it->second;//_graph[s1][it->first] ;
-        _graph[it->first][s2] = 1/d * 1/it->second;
+            _graph[s2][it->first] = d * it->second;//_graph[s1][it->first] ;
+            _graph[it->first][s2] = 1 / d * 1 / it->second;
         }
-         it = _graph[s2].begin();
+        it = _graph[s2].begin();
 
         for (; it != _graph[s2].end(); ++it) {
-            _graph[s1][it->first] =1/d * it->second;//_graph[s1][it->first] ;
-            _graph[it->first][s1] = d * 1/it->second;
+            _graph[s1][it->first] = 1 / d * it->second;//_graph[s1][it->first] ;
+            _graph[it->first][s1] = d * 1 / it->second;
 
         }
 
@@ -48,7 +48,7 @@ public:
         return _graph.contains(s);
     }
 
-    bool are_connected(const std::string &s1, const std::string &s2) {
+    bool are_connected(const std::string &s1, const std::string &s2) const {
 
         if (this->is_in_graph(s1) && this->is_in_graph(s2)) {
             return _graph.at(s1).contains(s2);
@@ -71,13 +71,7 @@ public:
 static Graph g;
 
 
-NumberWithUnits::NumberWithUnits(double amount, string type):_amount(amount),_type(type) {
-    if (!g.is_in_graph(type)) {
-        throw invalid_argument(" Units do not match to the text file!");
-    }
-}
-
-void throw_type_exception(const string &s1, const string &s2) {
+void check_type_exception(const string &s1, const string &s2) {
     if (!g.are_connected(s1, s2) || !g.is_in_graph(s1) || !g.is_in_graph(s2)) {
         throw invalid_argument("Units do not match - [" + s2 + "] cannot be converted to [" + s1 + "]");
     }
@@ -94,7 +88,7 @@ void NumberWithUnits::read_units(ifstream &file) {
             if (key != "=" && key != "1") {
                 parts.at(i++) = key;
             }
-            if (line.length() > key.length()) {
+            if ( line.length() >= line.find_first_not_of(' ', key.length())) {
                 line = line.substr(line.find_first_not_of(' ', key.length()));
             }
         }
@@ -104,12 +98,31 @@ void NumberWithUnits::read_units(ifstream &file) {
     file.close();
 }
 
-// BOOL OPERATORS //
+static void split_line_to_parts(string &line, string &type, double &amount) {
+    line.erase(remove(line.begin(), line.end(), ' '), line.end());
+
+    amount = stod(line.substr(0, line.find_first_of('[')));
+
+    unsigned long type_length = line.find_first_of(']') - 1 - line.find_first_of('[');
+    type = line.substr(line.find_first_of('[') + 1, type_length);
+}
+
+NumberWithUnits::NumberWithUnits(double amount, string type) : _amount(amount), _type(type) {
+    if (!g.is_in_graph(type)) {
+        throw invalid_argument(" Units do not match to the text file!");
+        type = "";
+    }
+}
+
+//                                      ///////////////////////////
+//                                      //// BOOL OPERATORS ///////
+//                                      ///////////////////////////
+
 bool NumberWithUnits::operator==(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
     if (string(s1) == string(s2) && this->_amount == n._amount) { return true; }
-    throw_type_exception(s1, s2);
+    check_type_exception(s1, s2);
 
     double edge = g.get_edge(s1, s2);
 
@@ -139,27 +152,29 @@ bool NumberWithUnits::operator>=(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
 
-    throw_type_exception(s1, s2);
+    check_type_exception(s1, s2);
     double edge = g.get_edge(s1, s2);
 
     return (this->_amount >= n._amount * edge);
 
 
 }
+//                                      ///////////////////////////
+//                                      //// PLUS OPERATORS ///////
+//                                      ///////////////////////////
 
-// PLUS OPERATORS //
 
 NumberWithUnits NumberWithUnits::operator+(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
-    throw_type_exception(s1, s2);
+    check_type_exception(s1, s2);
     double edge = g.get_edge(s1, s2);
 
 
     return NumberWithUnits(this->_amount + n._amount * edge, s1);
 }
 
-NumberWithUnits NumberWithUnits::operator+() {
+NumberWithUnits NumberWithUnits::operator+() { // unary
     return *this;
 }
 
@@ -167,25 +182,27 @@ NumberWithUnits &NumberWithUnits::operator+=(const NumberWithUnits &n) {
     string s1 = this->_type;
     string s2 = n._type;
 
-    throw_type_exception(s1, s2);
+    check_type_exception(s1, s2);
     double edge = g.get_edge(s1, s2);
     this->_amount += n._amount * edge;
 
     return *this;
 }
 
-NumberWithUnits &NumberWithUnits::operator++() {// pre
+NumberWithUnits &NumberWithUnits::operator++() { // pre
     this->_amount++;
     return *this;
 }
 
-NumberWithUnits NumberWithUnits::operator++(int) {// post
+NumberWithUnits NumberWithUnits::operator++(int) { // post
     NumberWithUnits temp{this->_amount, this->_type};
     this->_amount++;
     return temp;
 }
 
-// MINUS OPERATORS //
+//                                      ///////////////////////////
+//                                      //// MINUS OPERATORS //////
+//                                      ///////////////////////////
 
 NumberWithUnits &NumberWithUnits::operator-=(const NumberWithUnits &n) {
     NumberWithUnits temp{n._amount, n._type};
@@ -195,18 +212,18 @@ NumberWithUnits &NumberWithUnits::operator-=(const NumberWithUnits &n) {
 NumberWithUnits NumberWithUnits::operator-(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
-    throw_type_exception(s1, s2);
+    check_type_exception(s1, s2);
     double edge = g.get_edge(s1, s2);
 
 
     return NumberWithUnits(this->_amount - n._amount * edge, s1);
 }
 
-NumberWithUnits NumberWithUnits::operator-() {
-    return NumberWithUnits{-this->_amount,this->_type};
+NumberWithUnits NumberWithUnits::operator-() { // unary
+    return NumberWithUnits{-this->_amount, this->_type};
 }
 
-NumberWithUnits &NumberWithUnits::operator--() {// pre
+NumberWithUnits &NumberWithUnits::operator--() { // pre
     this->_amount--;
 
     return *this;
@@ -218,6 +235,54 @@ NumberWithUnits NumberWithUnits::operator--(int) { // post
     this->_amount--;
     return temp;
 }
+
+
+//                                      ////////////////////////////////
+//                                      //// O & I STREAM operators ////
+//                                      ////////////////////////////////
+std::istream &ariel::operator>>(istream &is, NumberWithUnits &n) {
+    char c = 0;
+    double amount = 0;
+    std::string type;
+    std::string line;
+    getline(is, line, ']');
+
+    split_line_to_parts(line, type, amount);
+
+
+//    is >> std::skipws >> amount >> std::skipws >> c;
+////            if (c != '['){
+////                is.setstate(std::ios::failbit);
+////            }
+//    is >> std::skipws >> type;
+//    if (type.at(type.length() - 1) != ']') {
+//        is >> std::skipws >> c;
+//    }
+//    if (type.at(type.length() - 1) == ']') {
+//        type = type.substr(0, type.length() - 1);
+//    }
+
+    NumberWithUnits temp = NumberWithUnits(amount, type);
+    n = temp;
+
+    return is;
+}
+
+
+std::ostream &ariel::operator<<(ostream &os, const NumberWithUnits &n) {
+
+    os << n._amount << "[" << n._type << "]";
+    return os;
+}
+
+NumberWithUnits ariel::operator*(const NumberWithUnits &n, const double &d) {
+    return ariel::NumberWithUnits(n._amount * d, n._type);
+}
+
+NumberWithUnits ariel::operator*(const double &d, const NumberWithUnits &n) {
+    return (n * d);
+}
+
 
 void ariel::add_types_for_demo(string s) {
     array<string, 3> parts;
@@ -236,11 +301,3 @@ void ariel::add_types_for_demo(string s) {
 }
 
 
-
-//double NumberWithUnits::getAmount() const {
-//    return _amount;
-//}
-//
-//const string &NumberWithUnits::getType() const {
-//    return _type;
-//}
