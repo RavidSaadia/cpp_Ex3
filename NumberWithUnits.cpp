@@ -24,8 +24,6 @@ public:
 
 
     void add_type(const string &s1, const string &s2, double d) {
-//        _graph[s1][s1] = 1;
-//        _graph[s2][s2] = 1;
         _graph[s1][s2] = 1 / d;
         _graph[s2][s1] = d;
 
@@ -71,6 +69,7 @@ public:
 static Graph g;
 
 
+
 void check_type_exception(const string &s1, const string &s2) {
     if (!g.are_connected(s1, s2) || !g.is_in_graph(s1) || !g.is_in_graph(s2)) {
         throw invalid_argument("Units do not match - [" + s2 + "] cannot be converted to [" + s1 + "]");
@@ -107,7 +106,7 @@ static void split_line_to_parts(string &line, string &type, double &amount) {
     type = line.substr(line.find_first_of('[') + 1, type_length);
 }
 
-NumberWithUnits::NumberWithUnits(double amount, string type) : _amount(amount), _type(type) {
+NumberWithUnits::NumberWithUnits(double amount, string type) : _amount(amount), _type(type) { // constructor
     if (!g.is_in_graph(type)) {
         throw invalid_argument(" Units do not match to the text file!");
         type = "";
@@ -121,7 +120,6 @@ NumberWithUnits::NumberWithUnits(double amount, string type) : _amount(amount), 
 bool NumberWithUnits::operator==(const NumberWithUnits &n) const {
     string s1 = this->_type;
     string s2 = n._type;
-    if (string(s1) == string(s2) && this->_amount == n._amount) { return true; }
     check_type_exception(s1, s2);
 
     double edge = g.get_edge(s1, s2);
@@ -159,9 +157,11 @@ bool NumberWithUnits::operator>=(const NumberWithUnits &n) const {
 
 
 }
-//                                      ///////////////////////////
-//                                      //// PLUS OPERATORS ///////
-//                                      ///////////////////////////
+
+
+//                                      //////////////////////////////
+//                                      //// ARITHMETICS OPERATOR ////
+//                                      //////////////////////////////
 
 
 NumberWithUnits NumberWithUnits::operator+(const NumberWithUnits &n) const {
@@ -200,9 +200,6 @@ NumberWithUnits NumberWithUnits::operator++(int) { // post
     return temp;
 }
 
-//                                      ///////////////////////////
-//                                      //// MINUS OPERATORS //////
-//                                      ///////////////////////////
 
 NumberWithUnits &NumberWithUnits::operator-=(const NumberWithUnits &n) {
     NumberWithUnits temp{n._amount, n._type};
@@ -236,45 +233,6 @@ NumberWithUnits NumberWithUnits::operator--(int) { // post
     return temp;
 }
 
-
-//                                      ////////////////////////////////
-//                                      //// O & I STREAM operators ////
-//                                      ////////////////////////////////
-std::istream &ariel::operator>>(istream &is, NumberWithUnits &n) {
-    char c = 0;
-    double amount = 0;
-    std::string type;
-    std::string line;
-    getline(is, line, ']');
-
-    split_line_to_parts(line, type, amount);
-
-
-//    is >> std::skipws >> amount >> std::skipws >> c;
-////            if (c != '['){
-////                is.setstate(std::ios::failbit);
-////            }
-//    is >> std::skipws >> type;
-//    if (type.at(type.length() - 1) != ']') {
-//        is >> std::skipws >> c;
-//    }
-//    if (type.at(type.length() - 1) == ']') {
-//        type = type.substr(0, type.length() - 1);
-//    }
-
-    NumberWithUnits temp = NumberWithUnits(amount, type);
-    n = temp;
-
-    return is;
-}
-
-
-std::ostream &ariel::operator<<(ostream &os, const NumberWithUnits &n) {
-
-    os << n._amount << "[" << n._type << "]";
-    return os;
-}
-
 NumberWithUnits ariel::operator*(const NumberWithUnits &n, const double &d) {
     return ariel::NumberWithUnits(n._amount * d, n._type);
 }
@@ -284,20 +242,26 @@ NumberWithUnits ariel::operator*(const double &d, const NumberWithUnits &n) {
 }
 
 
-void ariel::add_types_for_demo(string s) {
-    array<string, 3> parts;
-    for (size_t i = 0; i < 3;) {
+//                                      ////////////////////////////////
+//                                      //// O & I STREAM operators ////
+//                                      ////////////////////////////////
 
-        string key = s.substr(0, s.find_first_of(' ', 0));
-        if (key != "=" && key != "1") {
-            parts.at(i++) = key;
-        }
-        if (s.length() > key.length()) {
-            s = s.substr(s.find_first_not_of(' ', key.length()));
-        }
-    }
-    g.add_type(parts[0], parts[2], (double) stod(parts[1]));// consider use stold
+std::istream &ariel::operator>>(istream &is, NumberWithUnits &n) {
+    double amount = 0;
+    std::string type;
+    std::string line;
+    getline(is, line, ']');
 
+    split_line_to_parts(line, type, amount);
+
+    NumberWithUnits temp = NumberWithUnits(amount, type);
+    n = temp;
+
+    return is;
 }
 
 
+std::ostream &ariel::operator<<(ostream &os, const NumberWithUnits &n) {
+    os << n._amount << "[" << n._type << "]";
+    return os;
+}

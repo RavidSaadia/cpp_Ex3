@@ -85,6 +85,6 @@ namespace ariel {
 
     };
 
-    void add_types_for_demo(std::string s);
+//    void add_types_for_demo_g(std::string s);
 
 }

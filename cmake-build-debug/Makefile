@@ -131,6 +131,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named DEMO
+
+# Build rule for target.
+DEMO: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DEMO
+.PHONY : DEMO
+
+# fast build rule for target.
+DEMO/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/build
+.PHONY : DEMO/fast
+
+#=============================================================================
 # Target rules for targets named TEST
 
 # Build rule for target.
@@ -144,17 +157,17 @@ TEST/fast:
 .PHONY : TEST/fast
 
 #=============================================================================
-# Target rules for targets named DEMO
+# Target rules for targets named MY_DEMO
 
 # Build rule for target.
-DEMO: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DEMO
-.PHONY : DEMO
+MY_DEMO: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MY_DEMO
+.PHONY : MY_DEMO
 
 # fast build rule for target.
-DEMO/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/build
-.PHONY : DEMO/fast
+MY_DEMO/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/build
+.PHONY : MY_DEMO/fast
 
 Demo.o: Demo.cpp.o
 
@@ -183,32 +196,35 @@ Demo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/Demo.cpp.s
 .PHONY : Demo.cpp.s
 
-My_Deme.o: My_Deme.cpp.o
+My_Demo.o: My_Demo.cpp.o
 
-.PHONY : My_Deme.o
+.PHONY : My_Demo.o
 
 # target to build an object file
-My_Deme.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/My_Deme.cpp.o
-.PHONY : My_Deme.cpp.o
+My_Demo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/My_Demo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/My_Demo.cpp.o
+.PHONY : My_Demo.cpp.o
 
-My_Deme.i: My_Deme.cpp.i
+My_Demo.i: My_Demo.cpp.i
 
-.PHONY : My_Deme.i
+.PHONY : My_Demo.i
 
 # target to preprocess a source file
-My_Deme.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/My_Deme.cpp.i
-.PHONY : My_Deme.cpp.i
+My_Demo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/My_Demo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/My_Demo.cpp.i
+.PHONY : My_Demo.cpp.i
 
-My_Deme.s: My_Deme.cpp.s
+My_Demo.s: My_Demo.cpp.s
 
-.PHONY : My_Deme.s
+.PHONY : My_Demo.s
 
 # target to generate assembly for a file
-My_Deme.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/My_Deme.cpp.s
-.PHONY : My_Deme.cpp.s
+My_Demo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/My_Demo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/My_Demo.cpp.s
+.PHONY : My_Demo.cpp.s
 
 NumberWithUnits.o: NumberWithUnits.cpp.o
 
@@ -216,8 +232,9 @@ NumberWithUnits.o: NumberWithUnits.cpp.o
 
 # target to build an object file
 NumberWithUnits.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/NumberWithUnits.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/NumberWithUnits.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/NumberWithUnits.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/NumberWithUnits.cpp.o
 .PHONY : NumberWithUnits.cpp.o
 
 NumberWithUnits.i: NumberWithUnits.cpp.i
@@ -226,8 +243,9 @@ NumberWithUnits.i: NumberWithUnits.cpp.i
 
 # target to preprocess a source file
 NumberWithUnits.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/NumberWithUnits.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/NumberWithUnits.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/NumberWithUnits.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/NumberWithUnits.cpp.i
 .PHONY : NumberWithUnits.cpp.i
 
 NumberWithUnits.s: NumberWithUnits.cpp.s
@@ -236,8 +254,9 @@ NumberWithUnits.s: NumberWithUnits.cpp.s
 
 # target to generate assembly for a file
 NumberWithUnits.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/NumberWithUnits.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DEMO.dir/build.make CMakeFiles/DEMO.dir/NumberWithUnits.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/NumberWithUnits.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/NumberWithUnits.cpp.s
 .PHONY : NumberWithUnits.cpp.s
 
 StudentTest1.o: StudentTest1.cpp.o
@@ -355,6 +374,7 @@ TestRunner.o: TestRunner.cpp.o
 # target to build an object file
 TestRunner.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/TestRunner.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/TestRunner.cpp.o
 .PHONY : TestRunner.cpp.o
 
 TestRunner.i: TestRunner.cpp.i
@@ -364,6 +384,7 @@ TestRunner.i: TestRunner.cpp.i
 # target to preprocess a source file
 TestRunner.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/TestRunner.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/TestRunner.cpp.i
 .PHONY : TestRunner.cpp.i
 
 TestRunner.s: TestRunner.cpp.s
@@ -373,6 +394,7 @@ TestRunner.s: TestRunner.cpp.s
 # target to generate assembly for a file
 TestRunner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TEST.dir/build.make CMakeFiles/TEST.dir/TestRunner.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MY_DEMO.dir/build.make CMakeFiles/MY_DEMO.dir/TestRunner.cpp.s
 .PHONY : TestRunner.cpp.s
 
 # Help Target
@@ -384,13 +406,14 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DEMO"
+	@echo "... MY_DEMO"
 	@echo "... TEST"
 	@echo "... Demo.o"
 	@echo "... Demo.i"
 	@echo "... Demo.s"
-	@echo "... My_Deme.o"
-	@echo "... My_Deme.i"
-	@echo "... My_Deme.s"
+	@echo "... My_Demo.o"
+	@echo "... My_Demo.i"
+	@echo "... My_Demo.s"
 	@echo "... NumberWithUnits.o"
 	@echo "... NumberWithUnits.i"
 	@echo "... NumberWithUnits.s"
