@@ -16,8 +16,46 @@ using namespace ariel;
 int main() {
     ifstream units_file{"for_demo.txt"};
     NumberWithUnits::read_units(units_file);
-    NumberWithUnits a{5, "km"};   // 2 kilometers
-    NumberWithUnits b{100, "m"};  // 300 meters
+    NumberWithUnits a{0, "km"};
+    NumberWithUnits b{0, "km"};
+
+    bool flag1 = true;
+    bool flag2 = true;
+    while (flag1 || flag2) {
+
+        string a_input;
+        string b_input;
+        cout << "enter first type " << endl;
+        cin >> a_input;
+        istringstream input_1{a_input};
+        try {
+            input_1 >> a;
+            flag1 = false;
+
+        }
+        catch (const exception &ex) {
+            cout  << "something wrong with the first input" << endl;
+        }
+
+        cout << "enter second type " << endl;
+        cin >> b_input;
+        istringstream input_2{ b_input};
+
+        try {
+
+            input_2 >> b;
+            flag2 = false;
+        }
+        catch (const exception &ex) {
+
+            cout  << "something wrong with the input" << endl;
+        }
+        cin>>empty();
+    }
+
+
+//    NumberWithUnits a{5, "km"};   // 2 kilometers
+//    NumberWithUnits b{100, "m"};  // 300 meters
 //                                      //////////////////////////////
 //                                      //// ARITHMETICS OPERATOR ////
 //                                      //////////////////////////////
@@ -56,13 +94,13 @@ int main() {
     cout << (a <= b) << endl;  // Prints "false"
     cout << (a < b) << endl;  // Prints "false"
     cout << (b < a) << endl;  // Prints "true"
-    cout << (b == NumberWithUnits{3330,"USD"}) << endl;  // Prints "true"
-    cout << (b != NumberWithUnits{30,"USD"}) << endl;  // Prints "true"
-    cout << (b == NumberWithUnits{2000,"AGORA"}) << endl;  // Prints "false"
+    cout << (b == NumberWithUnits{3330, "USD"}) << endl;  // Prints "true"
+    cout << (b != NumberWithUnits{30, "USD"}) << endl;  // Prints "true"
+    cout << (b == NumberWithUnits{2000, "AGORA"}) << endl;  // Prints "false"
 
 
     try {
-        cout << (a + NumberWithUnits{12,"sec"}) << endl;
+        cout << (a + NumberWithUnits{12, "sec"}) << endl;
     } catch (const std::exception &ex) {
         cout << ex.what() << endl; // Prints "Units do not match - [sec] cannot be converted to [BITCOIN]"
     }
@@ -71,6 +109,9 @@ int main() {
 
     return 0;
 }
+
+
+
 
 
 
